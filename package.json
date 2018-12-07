@@ -1,5 +1,5 @@
 {
-  "description": "NativeScript Application that demonstrate use of Rivescript",
+  "description": "U ZawGyi - Unicode and ZawGyi Converter",
   "license": "MIT",
   "version": "0.1.0",
   "author": "MultiShiv19",
@@ -9,18 +9,26 @@
     "url": "https://github.com/shiv19/nativescript-rivescript-demo/issues"
   },
   "nativescript": {
-    "id": "org.nativescript.nativescriptrivescriptdemo",
+    "id": "org.sp18works.uzawgyi",
     "tns-android": {
-      "version": "3.2.0"
+      "version": "5.0.0"
     }
   },
   "scripts": {
     "lint": "eslint \"app/**/*.js\""
   },
   "dependencies": {
+    "fecha": "^3.0.0",
+    "nativescript-cardview": "^3.1.1",
+    "nativescript-clipboard": "^1.1.7",
+    "nativescript-social-share": "^1.5.1",
+    "nativescript-sqlite": "^2.2.3",
     "nativescript-theme-core": "~1.0.2",
+    "nativescript-toast": "^1.4.6",
+    "nativescript-ui-listview": "^5.0.0",
+    "nativescript-ui-sidedrawer": "^5.0.0",
     "rivescript": "^1.17.2",
-    "tns-core-modules": "~3.2.0"
+    "tns-core-modules": "^5.0.3"
   },
   "devDependencies": {
     "babel-traverse": "6.4.5",

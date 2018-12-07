@@ -1,62 +1,142 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:Card="nativescript-cardview"
+    xmlns:lv="nativescript-ui-listview" 
+    navigatingTo="onNavigatingTo" class="page">
 
     <Page.actionBar>
         <ActionBar class="action-bar">
             <StackLayout orientation="horizontal"
+                visibility="{{ isEditing ? 'collapse' : 'visible' }}"
                 ios:horizontalAlignment="center"
+                class="action-bar-title"
                 android:horizontalAlignment="left">
-                <Image height="20" src="res://icon" class="action-image"></Image>
-                <Label text="ativeScript | RiveBot"  class="action-label"></Label>
+                <!--<Image height="20" src="res://icon" class="action-image" ></Image>-->
+                <!--<Label text="&#xf094;" fontFamily="FontAwesome" class="action-label"></Label>-->
+                <Label text="U ZawGyi" style="font-weight: bold; font-size: 18;" fontFamily="FontAwesome" class="action-label"></Label>
             </StackLayout>
+            <NavigationButton text="Go Back" 
+                visibility="{{ isEditing ? 'visible' : 'collapse' }}"
+                android.systemIcon="ic_menu_back" tap="{{ onBackNav }}"/>
+            <ActionBar.actionItems>             
+                <ActionItem tap="{{ onCopyMsg }}" 
+                    visibility="{{ isEditing ? 'visible' : 'collapse' }}"
+                    style="text-transform: capitalize;"
+                    text="Copy" android.position="actionBar"></ActionItem>   
+                <ActionItem tap="{{ onShareMsg }}" 
+                    visibility="{{ isEditing ? 'visible' : 'collapse' }}"
+                    text="Forward" android.position="actionBar"></ActionItem>
+                <ActionItem tap="{{ onDeleteMsg }}" 
+                    visibility="{{ isEditing ? 'visible' : 'collapse' }}"
+                    text="Delete" android.position="popup"></ActionItem>
+                <ActionItem text="All" ios.systemIcon="16" ios.position="right"
+                    tap="{{ onTapFilter }}"
+                    visibility="{{ isEditing ? 'collapse' : 'visible' }}"
+                    android.position="popup"></ActionItem>
+                <ActionItem text="Unicode" ios.systemIcon="16" ios.position="right"
+                    tap="{{ onTapFilter }}"
+                    visibility="{{ isEditing ? 'collapse' : 'visible' }}"
+                    android.position="popup"></ActionItem>
+                <ActionItem text="Zawgyi" ios.systemIcon="16" ios.position="right"
+                    tap="{{ onTapFilter }}"
+                    visibility="{{ isEditing ? 'collapse' : 'visible' }}"
+                    android.position="popup"></ActionItem>
+                <ActionItem tap="{{ onTapLabel }}" 
+                    visibility="{{ isEditing ? 'visible' : 'visible' }}"
+                    text="Labels" android.position="popup"></ActionItem>
+            </ActionBar.actionItems> 
         </ActionBar>
     </Page.actionBar>
     <GridLayout columns="*" rows="*, auto">
+        <lv:RadListView height="100%" row="0" id="listView" 
+            selectionBehavior="Press" multipleSelection="true"
+            itemSelected="{{ onItemSelected }}" itemDeselected="{{ onItemDeselected }}"
+            itemLoading="{{ onItemLoading }}"
+            separatorColor="#f1f2f6" items="{{ chats }}" loaded="{{ onLoaded }}">
+            <lv:RadListView.itemTemplate >
+                <StackLayout>
+                    <Card:CardView
+                        visibility="{{ output === 'zawgyi' ? 'visible' : 'collapsed' }}"
+                        class="{{ selected ? 'card-style-selected' : 'zawgyi-card-style' }}" padding="10" 
+                        borderTopWidth="5" borderTopColor="#079992"
+                        marginTop="{{ id === 1 ? '10' : '10' }}" marginBottom="10" marginLeft="0" marginRight="0" 
+                        elevation="5"
+                        radius="0">
+                        <grid-layout columns="*" rows="auto, auto, auto" style="margin: 10;">
+                            <GridLayout row="0" columns="*" rows="auto, auto, auto" class="m-b-10">
+                                <Label fontFamily="FontAwesome" text="&#xf2d9; Zawgyi" class="msg-title"  textWrap="true" row="0" col="0" />
+                                <Label fontFamily="zawgyi" text="{{ messageTeaser }}" textWrap="true" verticalAlignment="top" 
+                                    row="1" col="0" class="p-10" style="font-size: 15;"/>
+                                    <Button 
+                                        tap="{{ onTapMore }}"
+                                        visibility="{{ hasMore ? 'visible' : 'collapsed' }}"
+                                        row="2" class="btn btn-outline more-btn-zawgyi" fontFamily="FontAwesome" text="&#xf078;"></Button>
+                            </GridLayout>
+                            <Repeater row="1" items="{{ labels }}">
+                                <Repeater.itemsLayout>
+                                    <WrapLayout orientation="horizontal" />
+                                </Repeater.itemsLayout>
+                                <Repeater.itemTemplate>
+                                    <Label class="msg-labels-box-zawgyi p-5 m-r-5 m-b-10" text="{{ label }}" textTransform="none"></Label>
+                                </Repeater.itemTemplate>
+                            </Repeater>
+                            <Label class="msg_timestamp them" text="{{ timestamp }}" horizontalAlignment="right" verticalAlignment="top" row="2"/>
+                        </grid-layout>
+                    </Card:CardView>
 
-        <ListView height="90%" row="0" margin-bottom="50" padding="5" id="listView" items="{{ chats }}">
-            <ListView.itemTemplate>
-                <StackLayout backgroundColor="white" id="chatBubble">
-
-                    <StackLayout  visibility="{{ who === 'bot' ? 'visible' : 'collapsed' }}">
-                        <GridLayout width="100%" columns="*" rows="auto, 20" class="msg them">
-                            <StackLayout orientation="horizontal">
-                                <Image class="authorimg" width="30" height="30" stretch="aspectFill" verticalAlignment="top" src="{{ image }}" />
-                                <Label text="{{ message }}" textWrap="true" verticalAlignment="top" class="msg_text"/>                                
-                            </StackLayout>
-                            <Label class="msg_timestamp them" text="{{ timestamp }}" verticalAlignment="top" row="1" colSpan="2" />
-
+                    <Card:CardView 
+                        visibility="{{ output === 'unicode' ? 'visible' : 'collapsed' }}"
+                        class="{{ selected ? 'card-style-selected' : 'unicode-card-style' }}" padding="10" 
+                        marginTop="{{ id === 1 ? '10' : '10' }}"  marginBottom="10" marginLeft="0" marginRight="0" 
+                        elevation="5"
+                        radius="0">
+                        <GridLayout columns="*" rows="auto, auto, auto"  style="margin: 10;">
+                            <GridLayout row="0" columns="*" rows="auto, auto, auto" class="m-b-10">
+                                <Label fontFamily="FontAwesome" text="&#xf2d9; Unicode" class="msg-title" textWrap="true" row="0" col="0" />
+                                <Label fontFamily="mon3" text="{{ messageTeaser }}" textWrap="true" verticalAlignment="top" 
+                                    row="1" col="0" class="p-10" style="font-size: 16;"/>
+                                <Button 
+                                    tap="{{ onTapMore }}" textTransform="none" 
+                                    visibility="{{ hasMore ? 'visible' : 'collapsed' }}"
+                                    row="2" class="btn btn-outline more-btn-unicode" fontFamily="FontAwesome" text="&#xf078;"></Button>
+                            </GridLayout>
+                            <Repeater row="1" items="{{ labels }}">
+                                <Repeater.itemsLayout>
+                                    <WrapLayout orientation="horizontal" />
+                                </Repeater.itemsLayout>
+                                <Repeater.itemTemplate>
+                                    <Label class="msg-labels-box-unicode p-5 m-r-5 m-b-10" text="{{ label }}" textTransform="none"></Label>
+                                </Repeater.itemTemplate>
+                            </Repeater>
+                            <Label class="msg_timestamp me" text="{{ timestamp }}" horizontalAlignment="right" verticalAlignment="top" row="2"/>
                         </GridLayout>
-                    </StackLayout>
-
-                    <StackLayout  visibility="{{ who === 'user' ? 'visible' : 'collapsed' }}">
-                        <GridLayout columns="*, auto" rows="auto, 40" class="msg me">
-                            <StackLayout col="1" orientation="horizontal" horizontalAlignment="right">
-                                <Label text="{{ message }}" class="msg_text" textWrap="true" verticalAlignment="top" />
-                                <Image class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="{{ image }}" col="1" />
-                            </StackLayout>
-                            <Label class="msg_timestamp me" text="{{ timestamp }}" verticalAlignment="top" row="1" col="1" />
-                        </GridLayout>
-                    </StackLayout>
-
+                    </Card:CardView>
                 </StackLayout>
-            </ListView.itemTemplate>
-        </ListView>
-        <StackLayout row="1" id="chatbox">
-            <GridLayout columns="*,auto" backgroundColor="#006967" style="padding: 10">
-                <TextField 
-                    row="0" col="0"
+            </lv:RadListView.itemTemplate>
+        </lv:RadListView>
+        <StackLayout row="1" id="chatbox" class="chat-box">
+            <GridLayout columns="60, *, 50">
+                <Button 
+                    col="0" row="0"
+                    textTransform="none" 
+                    fontFamily="FontAwesome"
+                    height="40" padding="5" 
+                    class="btn btn-primary chat-btn"
+                    tap="{{ onSwitchDesiredOutput }}"
+                    text="{{ desiredOutput + ' &#xf0a8;' }}" verticalAlignment="bottom" ></Button>
+                <TextView 
+                    col="1" row="0"
                     id="chatText"
                     class="chatTextField"
                     height="40"
-                    returnPress="{{ onChat }}"
-                    text="{{ userMsg }}"></TextField>
+                    text="{{ userMsg }}" editable="true"></TextView>
                 <Button 
-                    row="0" col="1"
-                    id="chatBtn" 
+                    col="2" row="0"
                     textTransform="none" 
                     fontFamily="FontAwesome"
-                    height="40" padding="5" margin="5" 
-                    class="btn btn-primary" 
-                    text="send &#xf1d9;" tap="{{ onChat }}"></Button>
+                    height="40" padding="5"
+                    class="btn btn-primary chat-btn"
+                    text="&#xf1d8;" tap="{{ onChat }}"
+                    verticalAlignment="bottom" ></Button>
             </GridLayout>
         </StackLayout>
     </GridLayout>

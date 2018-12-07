@@ -27,6 +27,8 @@
         <item name="colorPrimaryDark">@color/ns_primaryDark</item>
         <item name="colorAccent">@color/ns_accent</item>
 
+        <item name="actionMenuTextColor">@color/ns_white</item>
+        <item name="android:textColorSecondary">@color/ns_white</item>
     </style>
 
     <style name="AppTheme" parent="AppThemeBase">
@@ -37,7 +39,6 @@
         <item name="android:background">@color/ns_primary</item>
         <item name="theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat</item>
-
     </style>
 
     <style name="NativeScriptToolbarStyle" parent="NativeScriptToolbarStyleBase">

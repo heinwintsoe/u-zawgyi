@@ -1,27 +1,115 @@
-ListView {
-    separator-color: white;
-}
-
 .msg {
     font-size: 14;
     padding: 5;
 }
 
+.chat-btn {
+    background-color: #ffffff;
+    height:41;
+    border-radius:10;
+    border-width: 0;
+    margin-right: 5;
+    margin-left:0;
+    color:#1e3799;
+    border-color: #bdc3c7;
+    font-size: 22;
+}
+
+.more-btn-zawgyi {
+    margin: 0;
+    border-radius: 5;
+    border-width: 0;
+    color: #3c6382;
+    font-family: FontAwesome;
+    width: 100%;
+}
+
+.more-btn-unicode {
+    margin: 0;
+    border-radius: 5;
+    border-width: 0;
+    color: #4a69bd;
+    font-family: FontAwesome;
+    width: 100%;
+}
+
+.me .user_icon {
+    color: #ffffff; 
+    background-color: #4a69bd;
+    width:40;
+    height:40;
+    border-radius:100;
+    border-width:2;
+    border-color:#4a69bd;
+    font-weight: bold;
+}
+
+.me .user_icon_selected {
+    color: #ffffff; 
+    background-color: #57606f;
+    width:40;height:40;
+    border-radius:100;
+    border-width:2;
+    border-color:#57606f;
+    font-weight: bold;
+}
+
 .me .msg_text {
-    background-color: #30A9FF;
+    background-color: #4a69bd;
     color: white;
     padding: 8;
-    margin-right: 10;
-    border-radius: 5;
-    
+    margin-right: 5;
+    margin-left: 10;
+    border-radius: 10;
+}
+
+.me .msg_text_selected {
+    background-color: #57606f;
+    color: #ffffff;
+    padding: 8;
+    margin-right: 5;
+    margin-left: 10;
+    border-radius: 10;
+}
+
+.them .user_icon {
+    color: #4a69bd; 
+    background-color: #ffffff;
+    width:40;
+    height:40;
+    border-radius:100;
+    border-width:2;
+    border-color:#ffffff;
+    font-weight: bold;
+}
+
+.them .user_icon_selected {
+    color: #ffffff; 
+    background-color: #57606f;
+    width:40;
+    height:40;
+    border-radius:100;
+    border-width:2;
+    border-color:#57606f;
+    font-weight: bold;
 }
 
 .them .msg_text {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 7;
-    border-radius: 5;
-    margin-right: 40;
+    background-color: #ffffff;
+    color: #4a69bd;
+    padding: 8;
+    margin-left: 5;
+    margin-right: 10;
+    border-radius: 10;
+}
+
+.them .msg_text_selected {
+    background-color: #57606f;
+    color: #ffffff;
+    padding: 8;
+    margin-left: 5;
+    margin-right: 10;
+    border-radius: 10;
 }
 
 .authorimg {
@@ -33,6 +121,61 @@ ListView {
 
 .chatTextField {
     padding: 5; 
-    background-color: lightgray; 
-    border-radius: 4;
+    background-color: #ffffff; 
+    border-radius: 10;
+    border-color:#bdc3c7;
+    border-width:1;
+}
+
+.chat-box {
+    background-color: #ffffff;
+    /*padding: 5, 5, 5, 10;*/
+    padding-top: 3;
+    padding-right: 5;
+    padding-bottom: 2;
+    padding-left: 10;
+}
+
+/* Card View */
+.zawgyi-card-style {
+    background-color: white;
+    color: #3c6382;
+}
+
+.unicode-card-style {
+    background-color: white;
+    color: #4a69bd;
+}
+
+.card-style-selected {
+    background-color: #6a89cc;
+    color: #ffffff;
+}
+
+.msg-title {
+    font-size: 16;
+    margin-bottom: 10;
+    font-weight: 800;
+}
+
+.msg-labels-box-unicode {
+    border-radius: 25;
+    border-width: 1;
+    color: #4a69bd;
+    border-color: #4a69bd;
+    font-family: FontAwesome;
+    font-size: 12;
+    opacity: 0.5;
+    /* width: 10%; */
+}
+
+.msg-labels-box-zawgyi {
+    border-radius: 25;
+    border-width: 1;
+    color: #3c6382;
+    border-color: #3c6382;
+    font-family: FontAwesome;
+    font-size: 12;
+    opacity: 0.5;
+    /* width: 10%; */
 }

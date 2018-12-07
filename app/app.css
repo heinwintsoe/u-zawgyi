@@ -1,6 +1,14 @@
 ﻿@import 'nativescript-theme-core/css/core.light.css';
 @import '~/nativescript-theme-core/css/forest.css';
 
+.action-bar {
+    background-color: #0c2461;
+}
+
+.page {
+    background-color: #f1f2f6;
+}
+
 .btn {
     font-size: 18;
 }

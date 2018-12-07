@@ -1,0 +1,78 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:Card="nativescript-cardview"
+    xmlns:lv="nativescript-ui-listview" 
+    navigatingTo="onNavigatingTo" class="page">
+
+    <Page.actionBar>
+        <ActionBar class="action-bar">
+            <StackLayout orientation="horizontal"
+                ios:horizontalAlignment="center"
+                android:horizontalAlignment="left">
+                <Label text="" style="font-weight: bold; font-size: 18;" fontFamily="FontAwesome" class="action-label"></Label>
+            </StackLayout>
+            <NavigationButton text="Go Back" 
+                android.systemIcon="ic_menu_back" tap="{{ onBackNav }}"/>
+        </ActionBar>
+    </Page.actionBar>
+
+    <GridLayout columns="*" rows="auto, *">
+        <GridLayout col="0" row="0" columns="*, auto" rows="*" class="p-r-20 p-l-10 m-t-10 form">
+            <StackLayout col="0" row="0" class="input-field">
+                <TextField hint="Enter new label"  class="input" text="{{ labelText }}"/>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <Button 
+                col="1" row="0"
+                textTransform="none" 
+                fontFamily="FontAwesome"
+                class="btn btn-outline lbl-button"
+                text="&#xf067;" tap="{{ onTapCreateLabel }}"
+                verticalAlignment="top" horizontalAlignment="right"></Button>
+        </GridLayout>
+        <lv:RadListView height="100%" col="0" row="1" id="listView" 
+            class="list-group" items="{{ labels }}" loaded="{{ onLoaded }}">
+            <lv:RadListView.itemTemplate>
+                <StackLayout>
+                    <GridLayout visibility="{{ editing ? 'collapse' : 'visible' }}" class="p-y-5 p-x-20" columns="auto, *, auto" rows="*" tap="{{ onTapLblItem }}">
+                        <Label style="width: 10%;" verticalAlignment="middle"
+                            visibility="{{ selected ? 'visible' : 'collapse' }}"
+                            fontFamily="FontAwesome" text="&#xf046; " textWrap="true" row="0" col="0" />
+                        <Label style="width: 10%;"  verticalAlignment="middle"
+                            visibility="{{ selected ? 'collapse' : 'visible' }}"
+                            fontFamily="FontAwesome" text="&#xf096; " textWrap="true" row="0" col="0" />
+                        <Label fontFamily="FontAwesome" editable="false" verticalAlignment="middle" text="{{ label }}" textWrap="true" row="0" col="1" />
+                        <Button 
+                            row="0" col="2"
+                            textTransform="none"
+                            fontFamily="FontAwesome"
+                            class="btn btn-outline lbl-edit-button text-center"
+                            text="&#xf044;" tap="{{ onEditLabel }}"
+                            verticalAlignment="top" horizontalAlignment="right" ></Button>
+                    </GridLayout>
+                    <GridLayout visibility="{{ editing ? 'visible' : 'collapse' }}" class="p-y-5 p-l-10 p-r-20 form" columns="auto, *, auto" rows="auto, *, auto" tap="{{ onTapLblItem }}">
+                        <StackLayout row="0" colSpan="3" class="hr-light"></StackLayout>
+                        <Button 
+                            row="1" col="0"
+                            textTransform="none"
+                            fontFamily="FontAwesome"
+                            class="btn btn-outline lbl-edit-button text-center"
+                            text="&#xf014;" tap="{{ onDeleteLabel }}"
+                            verticalAlignment="center" horizontalAlignment="left" ></Button>
+                        <StackLayout col="1" row="1" class="input-field" verticalAlignment="center">
+                            <TextField class="input" class="input" text="{{ label }}"/>
+                        </StackLayout>
+                        <Button 
+                            row="1" col="2"
+                            textTransform="none"
+                            fontFamily="FontAwesome"
+                            class="btn btn-outline lbl-edit-button text-center"
+                            text="&#xf00c;" tap="{{ onEditDone }}"
+                            verticalAlignment="center" horizontalAlignment="right" ></Button>
+                        <StackLayout row="2" colSpan="3"  class="hr-light"></StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </lv:RadListView.itemTemplate>
+        </lv:RadListView>
+    </GridLayout>
+
+</Page>

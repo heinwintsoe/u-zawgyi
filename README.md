@@ -1,31 +1,15 @@
-# nativescript-rivescript-demo [v0.1.0]
-[![Twitter URL](https://img.shields.io/badge/twitter-%40MultiShiv19-blue.svg)](https://twitter.com/MultiShiv19)
+# u-zawgyi [v0.1.]
 
+## About
 
-This repo is a demo to show the power of NativeScript + RiveScript
+ZawGyi <--> Unicode Converter
 
-## Screenshots
+## Credit To Rabbit Converter
 
-<img src="assets/demoandroid.jpg?raw=true" height="320" > 
+Behind, this application has used the rules from Rabbit Converter.
 
-## Installation
+https://github.com/Rabbit-Converter/Rabbit
 
-```javascript
-npm i
-
-tns run android (or ios)
-```
-
-## Usage 
-
-Just chat with that bot, using the chat box. 
-(try sending "rpg demo", for something cool, but remember to send "exit" in the end
-because same instance of the bot will be servered as long as username is same)
-(also, if you see the bot is acting unusual, it's a good idea to send "exit" once)
-
-## Server Code
-The server can be found at <a href="https://github.com/shiv19/node-rivebot" target="_blank">this repository</a>
-    
 ## License
 
-MIT
+Take the source code and can do any thing you like. I don't care.
